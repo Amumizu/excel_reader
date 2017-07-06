@@ -1,0 +1,1305 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang='en-US'>
+<head id="Head1"><link rel="stylesheet" type="text/css" href="https://i-msdn.sec.s-msft.com/Combined.css?resources=0:header.2,0:ImageSprite2,1:LinkList;/Areas/Epx/Themes/Office/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;v=577F32FCD27802C80CF8D0A37F6664DC" xmlns="http://www.w3.org/1999/xhtml" />
+<link rel="stylesheet" type="text/css" href="https://i-msdn.sec.s-msft.com/Combined.css?resources=0:footer.2,0:ImageSprite2,1:LinkList;/Areas/Epx/Themes/Office/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;v=349107A6BE88C792074642FD4F11BB9F" xmlns="http://www.w3.org/1999/xhtml" />
+
+    <meta name="description" content="How to convert excel file to xml format" />
+    <meta name="Search.BRAND" content="Msdn"/>
+    <meta name="Search.IROOT" content="office"/>
+
+    <link rel="shortcut icon" href="https://i1.code.msdn.s-msft.com/office/GlobalResources/images/Msdn/favicon.ico" type="image/x-icon" /> <link href="//i1.social.s-msft.com/contentservice/6a99f17e-1e51-4b13-bba7-a3a900b79e4a/Site.css" rel="Stylesheet" type="text/css" /><link href="//i1.social.s-msft.com/contentservice/14d2ab10-7d23-4dac-8cd0-a3a900b9c831/Office_metro.css" rel="Stylesheet" type="text/css" /><meta name="CommunityInfo" content=" B=Msdn;A=Samples;L=en-US;" /><meta name="ms.puidhash" content="" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.0.min.js" type="text/javascript" language="javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js" type="text/javascript" language="javascript"></script>
+    <script src="https://i1.code.msdn.s-msft.com/RequestReduceContent/569e4d879e2974fce830f0bba3e504a5-1887ba0d3a238062eda702aee809bc07-RequestReducedScript.js" type="text/javascript" ></script>    
+    <title>ConvertExcelToXml.cs - How to convert excel file to xml format</title> 
+    <link href="/office/Content/Common/Galleries.css?v=413.5068.154.0" type="text/css" rel="Stylesheet" /><link href="/office/Content/Common/Layout.css?v=413.5068.154.0" type="text/css" rel="Stylesheet" /><link href="/office/Content/Samples/Brand.css?v=413.5068.154.0" type="text/css" rel="Stylesheet" /><link href="/office/Content/Office/Brand.css?v=413.5068.154.0" type="text/css" rel="Stylesheet" />    <link href="/office/site/feeds/searchRss" rel="Alternate" type="application/rss+xml"
+        title="Office samples" />
+    <link rel="P3Pv1" href="/W3C/p3p.xml" />
+    
+    
+            <link rel="canonical" href="https://code.msdn.microsoft.com/office/How-to-convert-excel-file-7a9bb404/view/SourceCode" />
+    
+    <meta name="ContentLanguage" content="L=en-US;"/>
+
+<!--
+Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use â€“ http://www.asp.net/ajaxlibrary/CDN.ashx.
+-->
+    <script type="text/javascript" >
+        function addAsyncScript(src) {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = src;
+            return script;
+        };
+    </script>
+    
+        <script type="text/javascript" language="javascript">
+            jQuery(window).load(function () {
+                window.appInsights = {
+                    queue: [],
+                    start: function (n) {
+                        function r(n, t) {
+                            n[t] = function () {
+                                var i = arguments;
+                                n.queue.push(function () { n[t].apply(n, i); });
+                            };
+                        }
+                        var t, i;
+                        this.applicationInsightsId = n;
+                        this.accountId = null;
+                        this.appUserId = null;
+                        r(this, "logEvent");
+                        r(this, "logPageView");
+                    }
+                };
+                window.appInsights.start("da4169d5-ce7e-4d99-b383-f5de813a9516");
+                window.appInsights.logPageView();
+            });
+        </script>
+    </head>
+<body class="Chrome en-us Samples " dir= "ltr">
+    
+
+<div data-chameleon-template="epxheader"></div>
+<div data-chameleon-template="header">
+
+    <div id="ux-header" class="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+        <div class="upperBand">
+            <div class="upperBandInner">
+                <div data-fragmentName="SiteLogo" id="Fragment_SiteLogo" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="LinkWithImage topImage">
+    <a id="SiteLogo_834_14" href="http://dev.office.com" title="Office home page">
+      <span>Dev Center</span>
+    </a>
+  </div>
+</div>
+
+                <div class="upperRight">
+                    <div data-fragmentName="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox" ms.cmpgrp="aux nav" role="search">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get" onsubmit="return Epx.Controls.SearchBox.searchBoxOnSubmit(this);">
+      <input id="HeaderSearchTextBox" name="query" type="text" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" aria-labelledby="HeaderSearchButton" />
+      <button id="HeaderSearchButton" value="" type="submit" class="header-search-button" ms.title="search"></button>
+    </form>
+    
+    
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="lowerBand">
+            <div class="lowerBandInner">
+                        <nav>
+            <ul>
+                        <li class="inactive toggle">
+                            <a href="javascript:void(0)" title="Explore">Explore</a>
+                            <div class="subNav">
+                                <div class="subNavInner">
+                                    <ul>
+                                                <li><a href="http://dev.office.com/opportunity" title="Why Office?">Why Office?</a></li>
+                                                <li><a href="http://dev.office.com/fabric" title="Office UI Fabric">Office UI Fabric</a></li>
+                                                <li><a href="http://graph.microsoft.io/" title="Microsoft Graph">Microsoft Graph</a></li>
+                                                <li><a href="http://betterwith.office.com/" title="Better with Office">Better with Office</a></li>
+                                    </ul>
+
+                                        <div class="officeProducts">
+                                            <ul>
+                                                <li>
+                                                    <a href="http://dev.office.com/word" class="product_word">Word</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/Excel" class="product_excel">Excel</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/Powerpoint" class="product_powerpoint">Powerpoint</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://msdn.microsoft.com/en-us/library/office/dn605890.aspx" target="_external" class="product_access">Access</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://msdn.microsoft.com/en-us/library/office/ms512767.aspx" target="_external" class="product_project">Project</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.onedrive.com" target="_external" class="product_onedrive">OneDrive</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.onenote.com" target="_external" class="product_onenote">OneNote</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.outlook.com" target="_external" class="product_outlook">Outlook</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://msdn.microsoft.com/en-us/library/office/dn833469.aspx" target="_external" class="product_sharepoint">SharePoint</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://skype.com/en-us/developers" target="_external" class="product_skype">Skype</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.yammer.com" target="_external" class="product_yammer">Yammer</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="officeSupports">
+                                            <ul>
+                                                <li>
+                                                    <a href="http://dev.office.com/android" class="support_android">Android</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/asp-dot-net" class="support_asp_net">ASP .NET</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/ios" class="support_ios">iOS</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/js" class="support_javascript">JavaScript</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/node" class="support_node_js">Node.js</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/getting-started/office365apis?platform=option-php#setup" class="support_php">PHP (coming soon)</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/getting-started/office365apis?platform=option-python#setup" class="support_python">Python (coming soon)</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://dev.office.com/getting-started/office365apis?platform=option-ruby#setup" class="support_ruby">Ruby (coming soon)</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="inactive">
+                            <a href="http://dev.office.com/getting-started" title="Getting Started">Getting Started</a>
+                        </li>
+                        <li class="inactive">
+                            <a href="http://dev.office.com/code-samples" title="Code Samples">Code Samples</a>
+                        </li>
+                        <li class="inactive toggle">
+                            <a href="javascript:void(0)" title="Resources">Resources</a>
+                            <div class="subNav">
+                                <div class="subNavInner">
+                                    <ul>
+                                                <li><a href="http://dev.office.com/patterns-and-practices" title="Patterns and Practices">Patterns and Practices</a></li>
+                                                <li><a href="http://dev.office.com/app-registration" title="App Registration Tool">App Registration Tool</a></li>
+                                                <li><a href="http://dev.office.com/events" title="Events">Events</a></li>
+                                                <li><a href="http://dev.office.com/podcasts" title="Podcasts">Podcasts</a></li>
+                                                <li><a href="http://dev.office.com/training" title="Training">Training</a></li>
+                                                <li><a href="https://apisandbox.msdn.microsoft.com/" title="API Sandbox">API Sandbox</a></li>
+                                                <li><a href="http://dev.office.com/videos" title="Videos">Videos</a></li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="inactive toggle">
+                            <a href="javascript:void(0)" title="Documentation">Documentation</a>
+                            <div class="subNav">
+                                <div class="subNavInner">
+                                    <ul>
+                                                <li><a href="http://dev.office.com/docs/add-ins/overview/office-add-ins" title="Office Add-ins">Office Add-ins</a></li>
+                                                <li><a href="http://dev.office.com/add-in-availability" title="Office Add-in Availability">Office Add-in Availability</a></li>
+                                                <li><a href="http://dev.office.com/changelog" title="Office Add-ins Changelog">Office Add-ins Changelog</a></li>
+                                                <li><a href="http://graph.microsoft.io/" title="Microsoft Graph API">Microsoft Graph API</a></li>
+                                                <li><a href="http://dev.outlook.com/connectors" title="Office 365 Connectors">Office 365 Connectors</a></li>
+                                                <li><a href="http://dev.office.com/chooseapiendpoint" title="Office 365 REST APIs">Office 365 REST APIs</a></li>
+                                                <li><a href="https://msdn.microsoft.com/library/office/fp179930.aspx" title="SharePoint Add-ins">SharePoint Add-ins</a></li>
+                                                <li><a href="http://dev.office.com/fabric/getting-started/" title="Office UI Fabric">Office UI Fabric</a></li>
+                                                <li><a href="https://msdn.microsoft.com/library/office/jj220037.aspx" title="Submit to the Office Store">Submit to the Office Store</a></li>
+                                                <li><a href="http://dev.office.com/docs" title="All Documentation">All Documentation</a></li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </li>
+            </ul>
+
+        </nav>
+        
+
+                <div data-fragmentName="SocialLinks" id="Fragment_SocialLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="https://www.yammer.com/" title="Yammer" id="SocialLinks_834_9" class="yammerLogo" xmlns="http://www.w3.org/1999/xhtml">https://www.yammer.com/</a>
+      </li>
+      <li>
+        <a href="http://feeds.feedburner.com/office/fmNx" title="RSS" id="SocialLinks_834_11" class="rssLogo" xmlns="http://www.w3.org/1999/xhtml">http://feeds.feedburner.com/office/fmNx</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            </div>
+        </div>
+
+    </div>
+<script type="text/javascript" xmlns="http://www.w3.org/1999/xhtml">
+/*<![CDATA[*/
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "https://i-msdn.sec.s-msft.com", 
+	"js": "https://i2-msdn.sec.s-msft.com", 
+	"css": "https://i-msdn.sec.s-msft.com", 
+	"ttf": "https://i-msdn.sec.s-msft.com"
+});
+/**/
+/*]]>*/
+</script><script type="text/javascript" src="https://i2-msdn.sec.s-msft.com/Areas/Epx/Themes/Base/Content/SearchBox.js" xmlns="http://www.w3.org/1999/xhtml"></script><script type="text/javascript" src="https://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox&amp;btnid=HeaderSearchButton&amp;minimumTermLength=2&amp;pgArea=header&amp;brand=Msdn&amp;loc=en-US&amp;Refinement=68&amp;focusOnInit=false&amp;iroot=office&amp;emptyWatermark=true&amp;searchButtonTooltip=Search here" xmlns="http://www.w3.org/1999/xhtml"></script><script src="https://i1.code.msdn.s-msft.com/RequestReduceContent/921a5704095abab0a6ebbf7c7ec35c7d-b66c228058b179d281defb282ea08264-RequestReducedScript.js" type="text/javascript" ></script></div>
+    <div id="BodyBackground" class="ltr">
+        <div id="JelloSizer">    
+            <div id="JelloExpander">
+                <div id="JelloWrapper">
+                    <div class="Clear"> </div>
+                    
+                   
+                    
+                    
+                    <div class="Clear"> </div>
+                          
+                    <div class="topleftcorner"></div>           
+                    <div class="toprightcorner"></div>                                
+                    <div class="alley"> <!-- Left Side -->
+                        <div class="wrapper"> <!-- Right Side -->
+                            <div class="inner">  
+                            
+                                                 
+                                <div class="Clear"></div>   
+
+
+                                
+                                
+                                
+                                
+                                <div id="MainContent" class="Msdn">
+                                    
+    
+    
+
+    <script language="javascript" type="text/javascript">
+        $(function () { Galleries.cookie.setTimezoneOffsetCookie(); })
+    </script>
+
+    <div id="container">
+        
+            <div id="GalleriesNavigation">
+                
+            </div>            
+        
+        
+            <div id="subHeader">
+                <div id="eyebrow" class="left">
+                    
+
+
+
+
+
+
+
+
+
+
+
+<div class="EyebrowContainer">
+    
+    
+
+    
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="EyebrowElement">
+    <a href=https://msdn.microsoft.com/en-US/office/ itemprop="url">
+        <span itemprop="title">Office Developer Center</span>
+    </a>
+</div>
+<text>></text>
+
+    
+    
+    
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="EyebrowElement">
+             <a href="/office/" itemprop="url">
+                <span itemprop="title">Samples</span>
+            </a> 
+    </div>
+
+
+
+
+    >
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="EyebrowElement">
+             <a href="/office/How-to-convert-excel-file-7a9bb404" itemprop="url" class="EyebrowLeafLink">
+                <span itemprop="title">How to convert excel file to xml format</span>
+            </a> 
+    </div>
+</div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        
+        
+            <div id="siteMessage">
+                
+
+
+
+
+
+
+            </div>
+            <div class="clear"></div>
+        
+        
+
+<div class="subMenu">
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $('.internav > a').each(function (index, elem) {
+                if ($(elem).attr('href').toUpperCase().indexOf('CODE') != -1) {
+                    $(elem).addClass('active');
+                }
+                if ($(elem).attr('href').toUpperCase().indexOf('SMPGDB') != -1) {
+                    $(elem).addClass('active');
+                }
+
+            });
+        });
+    </script>
+</div>      
+        <div class="clear"></div>
+
+        <div id="bodyContainer">
+            
+    
+    <div id="projectPage">
+        <div class="sidebar">
+            <div data-chameleon-template="actionbox"></div>
+            
+
+
+<div class="section" id="contributeSection">
+<div class="contributeAction">
+    <a href="http://go.microsoft.com/fwlink/?LinkId=309297"><img  src="https://i1.code.msdn.s-msft.com/office/content/common/download.png" />Download Visual Studio</a>
+</div>
+    <h3>Quick access</h3>
+
+<div id="myContributionsAction">
+    <div>
+        <a id="myContributionsLink" href="/office/site/mydashboard">
+            My samples
+        </a>
+    </div>
+</div>
+
+<div id="uploadAction">
+    <a id="uploadLink" href="/office/site/upload">Upload a sample</a>
+</div>
+
+    <div id="requestAction">
+        <a  id="exclamationLink" href="/office/site/requests">Browse sample requests</a>
+    </div>
+</div>
+
+
+
+<div id="userCard" class="section">
+    <div class="unified-baseball-card" 
+         data-profile-usercard-customLink='{"href":"/office/site/search?f%5B0%5D.Type=User&f%5B0%5D.Value=OneCode%20Team","text":"View samples"}' 
+         data-profile-userid="342abcef-fe78-4e82-8908-1115a725efa3">
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    if (false)
+        Galleries.utility.waitFor(
+            function() { $('#userCard .profile-statline, #userCard .profile-usercard-profileLink').hide(); });
+</script>
+            <div id="moreFromAuthor" class="collapsableSidebar">
+                <div data-url="/office/How-to-convert-excel-file-7a9bb404/AuthorProjects" id="authorProjectContainer"></div>
+            </div>
+        </div>
+
+        <div id="projectDetails">
+            <div>
+                
+
+
+<h1 class="projectTitle">How to convert excel file to xml format</h1>
+<h2 class="projectSummary">How to convert excel file to xml format</h2>
+<div class="clear" ></div>
+
+    <div id="Downloads">
+        <div>
+            <label for="Downloads">Download</label>
+        </div>
+        
+                    <a href="/office/How-to-convert-excel-file-7a9bb404/file/84394/5/How%20to%20convert%20excel%20file%20to%20xml%20format.zip" data-url="/office/How-to-convert-excel-file-7a9bb404/file/84394/5/How%20to%20convert%20excel%20file%20to%20xml%20format.zip" class="button">C# (184.8 KB)</a>
+        
+                    <a href="/office/How-to-convert-excel-file-7a9bb404/file/84395/5/How%20to%20convert%20excel%20file%20to%20xml%20format.zip" data-url="/office/How-to-convert-excel-file-7a9bb404/file/84395/5/How%20to%20convert%20excel%20file%20to%20xml%20format.zip" class="button">VB.NET (186.8 KB)</a>
+        
+    </div>
+
+<div class="clear"></div>
+
+<div class="clear"></div>
+<div id="projectInfo">
+    <div id="sectionLeft" class="section">
+        <div class="itemBar">
+            <label for="ReviewValue">Ratings</label>                   
+            
+    <div id="yourRating"">
+        <form action="/office/How-to-convert-excel-file-7a9bb404/createreview" id="reviewForm" method="post" name="reviewForm"><input id="Rating" name="Rating" type="hidden" value="" />
+            <input id="Text" name="Text" type="hidden" value="" />
+        <div class="Rating stackLeft EditStarMode" id="Star_Span" onmouseout="onStarsMouseOut()">
+        
+            <div id="Star_0" tabindex="0" aria-label="Rating 1 Star" class="RatingStar FilledRatingStar"
+                data-initialstarclass="FilledRatingStar" 
+                onmouseover="onStarMouseOver('Star_0')" onclick="onStarClick(0)"
+                title="1">
+                &nbsp;</div>
+        
+            <div id="Star_1" tabindex="0" aria-label="Rating 2 Star" class="RatingStar FilledRatingStar"
+                data-initialstarclass="FilledRatingStar" 
+                onmouseover="onStarMouseOver('Star_1')" onclick="onStarClick(1)"
+                title="2">
+                &nbsp;</div>
+        
+            <div id="Star_2" tabindex="0" aria-label="Rating 3 Star" class="RatingStar FilledRatingStar"
+                data-initialstarclass="FilledRatingStar" 
+                onmouseover="onStarMouseOver('Star_2')" onclick="onStarClick(2)"
+                title="3">
+                &nbsp;</div>
+        
+            <div id="Star_3" tabindex="0" aria-label="Rating 4 Star" class="RatingStar FilledRatingStar"
+                data-initialstarclass="FilledRatingStar" 
+                onmouseover="onStarMouseOver('Star_3')" onclick="onStarClick(3)"
+                title="4">
+                &nbsp;</div>
+        
+            <div id="Star_4" tabindex="0" aria-label="Rating 5 Star" class="RatingStar EmptyRatingStar"
+                data-initialstarclass="EmptyRatingStar" 
+                onmouseover="onStarMouseOver('Star_4')" onclick="onStarClick(4)"
+                title="5">
+                &nbsp;</div>
+        
+        </div>
+        <div style="clear:both;"></div> 
+        </form>
+    </div>
+    
+       <div style="display:inline-block;overflow:hidden;width:1px;height:1px;float:left;">4.1 Star</div>
+    
+    <div id="RatingCount">(17)</div>
+    
+
+<script language="javascript">
+    function onStarMouseOver(id) {
+        var id_prefix = id.substring(0, id.lastIndexOf('_') + 1);
+        var index = parseInt(id.substring(id.lastIndexOf('_') + 1, id.length));
+
+        for (i = 0; i < 5; i++) {
+            var star = $('#' + id_prefix + i);
+            var initialRatingClass = star.data('initialstarclass');
+            if (i <= index)                star.removeClass(initialRatingClass).removeClass('EmptyRatingStar').addClass('FilledRatingStarHover');            else                star.removeClass(initialRatingClass).removeClass('FilledRatingStarHover').addClass('EmptyRatingStar');
+        }
+        
+    }
+    function onStarsMouseOut() {
+        var stars = $("#RatingStar");
+        var id_prefix = "Star_";
+        var currentRating = 4.11764705882353;
+        
+        for (i = 0; i < 5; i++) {
+            var star = $('#' + id_prefix + i.toString());
+            var initialRatingClass = star.data('initialstarclass');
+            star.removeClass('EmptyRatingStar').removeClass('FilledRatingStarHover').addClass(initialRatingClass);
+        }
+    }
+    
+    function onStarClick(index) {
+        $('#Rating').val(index + 1);
+        document.getElementById("reviewForm").submit();
+    }
+</script>
+
+        </div>
+        
+            <div class="itemBar">
+                <label for="DownloadCount">Downloaded</label>
+                <span id="DownloadCount">68,247 times</span>
+            </div>
+        
+            <div class="itemBar">
+                <label for="Favorites">Favorites</label>
+                
+
+<script language="javascript">
+    $(function () { $('a#addFavoriteLink').click(function () { $('form#favoriteform').submit(); }); });
+</script>
+<span id="Collections">
+
+        <a href="/office/Account/Login?ReturnUrl=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">Add to favorites</a>
+
+</span>
+
+            </div>
+        
+
+
+    <div class="itemBarLong">
+        <label for="Requires">Requires</label>
+        <div id="Requires">
+                <a href="/office/site/search?f%5B0%5D.Type=VisualStudioVersion&amp;f%5B0%5D.Value=11.0&amp;f%5B0%5D.Text=Visual%20Studio%202012">Visual Studio 2012</a>
+
+        </div>
+    </div>
+        
+        
+    </div>
+
+    <div id="sectionRight" class="section">
+        <div class="itemBar">
+            <label for="LastUpdated">
+                Updated</label>
+            <span id="LastUpdated">
+                4/13/2015</span>
+        </div>
+        
+            <div class="itemBarLong">
+                <label for="License">
+                    License</label>
+                <div id="License"><a href="javascript:showEula()">Apache License, Version 2.0</a></div>
+            </div>
+        
+        <div class="itemBar">
+            <label for="LastUpdated">
+                Share</label>
+            <span>
+                
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $('.shareThisItem > a').WireTrackerForEvent('click', 'https://code.msdn.microsoft.com/office/Content/Common/tracker.gif', 'ShareItClick', 'How-to-convert-excel-file-7a9bb404', true);
+    });
+</script>
+
+<div class="shareThisItem">
+ 
+<a href ="mailto:?subject=How%20to%20convert%20excel%20file%20to%20xml%20format&amp;Body=https://code.msdn.microsoft.com/office/How-to-convert-excel-file-7a9bb404" target="_blank"><img alt="E-mail" src="https://i1.gallery.technet.s-msft.com/scriptcenter/content/common/sharethis/email.gif" /></a>
+
+ 
+<a href ="http://twitter.com/home?status=How%20to%20convert%20excel%20file%20to%20xml%20format&#32;:&#32;https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404" target="_blank"><img alt="Twitter" src="https://i1.gallery.technet.s-msft.com/scriptcenter/content/common/sharethis/twitter.gif" /></a>
+
+ 
+<a href ="http://del.icio.us/post?url=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404&amp;title=How%20to%20convert%20excel%20file%20to%20xml%20format" target="_blank"><img alt="del.icio.us" src="https://i1.gallery.technet.s-msft.com/scriptcenter/content/common/sharethis/delicious.gif" /></a>
+
+ 
+<a href ="http://digg.com/submit?url=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404&amp;title=How%20to%20convert%20excel%20file%20to%20xml%20format" target="_blank"><img alt="Digg" src="https://i1.gallery.technet.s-msft.com/scriptcenter/content/common/sharethis/digg.gif" /></a>
+
+ 
+<a href ="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404&amp;t=How%20to%20convert%20excel%20file%20to%20xml%20format" target="_blank"><img alt="Facebook" src="https://i1.gallery.technet.s-msft.com/scriptcenter/content/common/sharethis/facebook.gif" /></a>
+
+
+</div></span>
+        </div>
+        
+        
+    </div>
+    <div class="clear"></div>
+    <div class="section">
+    
+    <div class="itemBarLong">
+        <label for="TranslatedIn">Translated in</label>
+        <div id="TranslatedIn">
+             <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=ja-JP&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">日本語</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=zh-CN&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">中文(简体) 旧版</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=ko-KR&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">한국어</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=de-DE&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">Deutsch</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=ru-RU&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">русский</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=zh-TW&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">中文(繁體) 舊版</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=cs-CZ&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">čeština</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=es-ES&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">espa&#241;ol</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=es-AR&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">espa&#241;ol</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=fr-FR&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">fran&#231;ais</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=it-IT&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">italiano</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=pl-PL&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">polski</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=pt-BR&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">portugu&#234;s</a>, <a href="https://Msdn.microsoft.com/?action=SelectLocale&amp;currentLocale=en-US&amp;newLocale=tr-TR&amp;fromPage=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404">T&#252;rk&#231;e</a>
+        </div>
+    </div>
+
+
+
+
+    <div class="itemBarLong tagsContainer">
+        <label for="Technologies">Technologies</label>
+        <div id="Technologies">
+            <a href="/office/site/search?f%5B0%5D.Type=Technology&amp;f%5B0%5D.Value=Office&amp;f%5B0%5D.Text=Office">Office</a>, <a href="/office/site/search?f%5B0%5D.Type=Technology&amp;f%5B0%5D.Value=Office%20Development&amp;f%5B0%5D.Text=Office%20Development">Office Development</a>
+        </div>
+    </div>
+    <div class="itemBarLong tagsContainer">
+        <label for="Topics">Topics</label>
+        <div id="Topics">
+            <a href="/office/site/search?f%5B0%5D.Type=Topic&amp;f%5B0%5D.Value=Excel&amp;f%5B0%5D.Text=Excel">Excel</a>, <a href="/office/site/search?f%5B0%5D.Type=Topic&amp;f%5B0%5D.Value=XML&amp;f%5B0%5D.Text=XML">XML</a>, <a href="/office/site/search?f%5B0%5D.Type=Topic&amp;f%5B0%5D.Value=Convert&amp;f%5B0%5D.Text=Convert">Convert</a>
+        </div>
+    </div>
+
+
+    <a name="content"></a>
+    <div class="itemBar">
+            <span id="reportAbuse">
+                <a href="/office/Account/Login?ReturnUrl=https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404%2fview%2fReportAbuse">Report abuse to Microsoft</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script src="https://i1.code.msdn.s-msft.com/RequestReduceContent/8d74d682e1b2a2813773cc2bbc0183c6-7af9a874efbc1f5aa0062aba1a48cd8f-RequestReducedScript.js" type="text/javascript" ></script><script type="text/javascript">
+
+    $(function () {
+        $('#Downloads input').click(function () {
+            window.location.href = $(this).data('url');
+         });
+    });
+
+    function rateItReviewIt() {
+        displayCreateReview();
+        $('#Reviews_Tab').click();
+    }
+
+    function showEula() {
+        $.get('\x2foffice\x2fsite\x2fHow-to-convert-excel-file-7a9bb404\x2feulapartial\x3flicenseType\x3dApache', function(data){
+            $.prompt(data, {
+                prefix: 'eulaPage',
+                top: '15%',
+                buttons: { 'Close': true }   
+            });
+        });
+    };
+
+</script>
+
+
+            </div>
+        </div>
+        
+
+
+
+
+
+<div id="projectBody">
+    <div id="projectContent">
+        <div class="tabHeaders">
+            <div id="Details_Tab" class = ><a href="/office/How-to-convert-excel-file-7a9bb404#content" >Description</a></div>
+            
+        <div id="SourceCode_Tab"  class = current><a href="/office/How-to-convert-excel-file-7a9bb404/view/SourceCode#content" >Browse code</a></div>
+
+        </div>
+        <div class="tabContents">
+                <div id="Details_Content">
+                    
+                </div>
+            
+            
+            <div id="SourceCode_Content">
+                
+
+<script language="javascript">
+    $(function () {
+        Galleries.SourceCodeBrowser.init({
+            fileUrl: '\x2foffice\x2fHow-to-convert-excel-file-7a9bb404\x2fsourceitem\x3ffileId\x3dfileIdHolder\x26pathId\x3dpathIdHolder\x26streamRaw\x3dFalse',
+            statisticsUrl: '\x2foffice\x2fHow-to-convert-excel-file-7a9bb404\x2fstats\x2fRegisterPageView',
+            loadedFileId : 84394,
+            loadedPathId : 1762312282
+        });
+        $("#SourceCode_Content").split();
+    });
+</script>
+<script src="https://i1.code.msdn.s-msft.com/office/content/common/chili/jquery.chili-2.2.js" type="text/javascript" ></script>
+<script src="https://i1.code.msdn.s-msft.com/office/content/common/chili/recipes.js" type="text/javascript"></script>
+
+
+
+<div class="sourceList">
+    <div class="sourceListTabHeader"><h3>Solution explorer</h3></div>
+    <div class="sourceListTabs">        
+        
+            <div id="lang0">C#</div>
+        
+            <div id="lang1">VB.NET</div>
+        
+    </div>
+    <div class="endTabs"></div>
+
+    <div class="sourceListContent">
+        
+            <div id="lang0_Content" class="langContent" style="display: none;">
+                <a class="browserDir languageNode">
+                    <div class="sbfc"></div>
+                </a>
+                <div style="display:none;margin-left:20px;">
+                                                          
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">CSOpenXmlExcelToXml</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">Documentation</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">ReadMe_files</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=485926353" class="browseFile"  data-fileid="84394" data-pathid="485926353" data-name="colorschememapping.xml"><div class="sbf">colorschememapping.xml</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=721127797" class="browseFile"  data-fileid="84394" data-pathid="721127797" data-name="filelist.xml"><div class="sbf">filelist.xml</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=63537499" class="browseFile"  data-fileid="84394" data-pathid="63537499" data-name="image001.png"><div class="sbf">image001.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=801481903" class="browseFile"  data-fileid="84394" data-pathid="801481903" data-name="image002.png"><div class="sbf">image002.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=53880565" class="browseFile"  data-fileid="84394" data-pathid="53880565" data-name="image003.png"><div class="sbf">image003.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1141529880" class="browseFile"  data-fileid="84394" data-pathid="1141529880" data-name="image004.jpg"><div class="sbf">image004.jpg</div></a> 
+        <div class="ndbf">themedata.thmx</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=460702551" class="browseFile"  data-fileid="84394" data-pathid="460702551" data-name="ReadMe.htm"><div class="sbf">ReadMe.htm</div></a> 
+        </div>
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">Properties</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1239097669" class="browseFile"  data-fileid="84394" data-pathid="1239097669" data-name="AssemblyInfo.cs"><div class="sbf">AssemblyInfo.cs</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1798227272" class="browseFile"  data-fileid="84394" data-pathid="1798227272" data-name="Resources.Designer.cs"><div class="sbf">Resources.Designer.cs</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=975235349" class="browseFile"  data-fileid="84394" data-pathid="975235349" data-name="Resources.resx"><div class="sbf">Resources.resx</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1075377499" class="browseFile"  data-fileid="84394" data-pathid="1075377499" data-name="Settings.Designer.cs"><div class="sbf">Settings.Designer.cs</div></a> 
+        <div class="ndbf">Settings.settings</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=885260566" class="browseFile"  data-fileid="84394" data-pathid="885260566" data-name="app.config"><div class="sbf">app.config</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1762312282" class="browseFile"  data-fileid="84394" data-pathid="1762312282" data-name="ConvertExcelToXml.cs"><div class="sbf">ConvertExcelToXml.cs</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1318959107" class="browseFile"  data-fileid="84394" data-pathid="1318959107" data-name="CSOpenXmlExcelToXml.csproj"><div class="sbf">CSOpenXmlExcelToXml.csproj</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1313529237" class="browseFile"  data-fileid="84394" data-pathid="1313529237" data-name="MainForm.cs"><div class="sbf">MainForm.cs</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1041309515" class="browseFile"  data-fileid="84394" data-pathid="1041309515" data-name="MainForm.Designer.cs"><div class="sbf">MainForm.Designer.cs</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=726434041" class="browseFile"  data-fileid="84394" data-pathid="726434041" data-name="MainForm.resx"><div class="sbf">MainForm.resx</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=2027140092" class="browseFile"  data-fileid="84394" data-pathid="2027140092" data-name="Program.cs"><div class="sbf">Program.cs</div></a> 
+        <div class="ndbf">text.xlsx</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=984237793" class="browseFile"  data-fileid="84394" data-pathid="984237793" data-name="CSOpenXmlExcelToXml.sln"><div class="sbf">CSOpenXmlExcelToXml.sln</div></a> 
+        <div class="ndbf">CSOpenXmlExcelToXml.vssscc</div>
+            </div>
+            </div>
+            <div id="lang1_Content" class="langContent" style="display: none;">
+                <a class="browserDir languageNode">
+                    <div class="sbfc"></div>
+                </a>
+                <div style="display:none;margin-left:20px;">
+                                                          
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">VBOpenXmlExcelToXml</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">Documentation</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">ReadMe_files</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1580938479" class="browseFile"  data-fileid="84395" data-pathid="1580938479" data-name="colorschememapping.xml"><div class="sbf">colorschememapping.xml</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=305364249" class="browseFile"  data-fileid="84395" data-pathid="305364249" data-name="filelist.xml"><div class="sbf">filelist.xml</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=940958404" class="browseFile"  data-fileid="84395" data-pathid="940958404" data-name="image001.png"><div class="sbf">image001.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=2023322698" class="browseFile"  data-fileid="84395" data-pathid="2023322698" data-name="image002.png"><div class="sbf">image002.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=811983525" class="browseFile"  data-fileid="84395" data-pathid="811983525" data-name="image003.png"><div class="sbf">image003.png</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1770600635" class="browseFile"  data-fileid="84395" data-pathid="1770600635" data-name="image004.jpg"><div class="sbf">image004.jpg</div></a> 
+        <div class="ndbf">themedata.thmx</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=2005262152" class="browseFile"  data-fileid="84395" data-pathid="2005262152" data-name="ReadMe.htm"><div class="sbf">ReadMe.htm</div></a> 
+        </div>
+                                                      
+        <a href="javascript: void(0)" class="browserDir">
+            <div class="sbfc">My Project</div>
+        </a>
+        <div style="display:none;margin-left:20px;">
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=386643779" class="browseFile"  data-fileid="84395" data-pathid="386643779" data-name="Application.Designer.vb"><div class="sbf">Application.Designer.vb</div></a> 
+        <div class="ndbf">Application.myapp</div>
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=485505238" class="browseFile"  data-fileid="84395" data-pathid="485505238" data-name="AssemblyInfo.vb"><div class="sbf">AssemblyInfo.vb</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=960607817" class="browseFile"  data-fileid="84395" data-pathid="960607817" data-name="Resources.Designer.vb"><div class="sbf">Resources.Designer.vb</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1938527575" class="browseFile"  data-fileid="84395" data-pathid="1938527575" data-name="Resources.resx"><div class="sbf">Resources.resx</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1685607888" class="browseFile"  data-fileid="84395" data-pathid="1685607888" data-name="Settings.Designer.vb"><div class="sbf">Settings.Designer.vb</div></a> 
+        <div class="ndbf">Settings.settings</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=341166398" class="browseFile"  data-fileid="84395" data-pathid="341166398" data-name="App.config"><div class="sbf">App.config</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1490218594" class="browseFile"  data-fileid="84395" data-pathid="1490218594" data-name="ConvertExcelToXml.vb"><div class="sbf">ConvertExcelToXml.vb</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1611842652" class="browseFile"  data-fileid="84395" data-pathid="1611842652" data-name="MainForm.Designer.vb"><div class="sbf">MainForm.Designer.vb</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=666910540" class="browseFile"  data-fileid="84395" data-pathid="666910540" data-name="MainForm.resx"><div class="sbf">MainForm.resx</div></a> 
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=1102430363" class="browseFile"  data-fileid="84395" data-pathid="1102430363" data-name="MainForm.vb"><div class="sbf">MainForm.vb</div></a> 
+        <div class="ndbf">text.xlsx</div>
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=757803726" class="browseFile"  data-fileid="84395" data-pathid="757803726" data-name="VBOpenXmlExcelToXml.vbproj"><div class="sbf">VBOpenXmlExcelToXml.vbproj</div></a> 
+        <div class="ndbf">VBOpenXmlExcelToXml.vbproj.vspscc</div>
+        </div>
+        
+        <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84395&amp;pathId=473600990" class="browseFile"  data-fileid="84395" data-pathid="473600990" data-name="VBOpenXmlExcelToXml.sln"><div class="sbf">VBOpenXmlExcelToXml.sln</div></a> 
+        <div class="ndbf">VBOpenXmlExcelToXml.vssscc</div>
+            </div>
+            </div>
+    </div>
+</div>
+
+<div id="sourceItem">
+
+
+<div>
+    <a href="" class="copyCode" style="display:none;">Copy code</a>
+    <a href="/office/How-to-convert-excel-file-7a9bb404/sourcecode?fileId=84394&amp;pathId=1762312282">ConvertExcelToXml.cs </a>7.38KB
+</div>
+<div>
+
+        <pre class="csharp">﻿/****************************** Module Header ******************************\
+* Module Name:  ConvertExcelToXml.cs
+* Project:      CSOpenXmlExcelToXml
+* Copyright(c)  Microsoft Corporation.
+* 
+* This class is used to convert excel data to XML format string using Open XMl
+* Firstly, we use OpenXML API to get data from Excel to DataTable
+* Then we Load the DataTable to Dataset.
+* At Last,we call DataSet.GetXml() to get XML format string 
+*
+* This source is subject to the Microsoft Public License.
+* See http://www.microsoft.com/en-us/openness/licenses.aspx.
+* All other rights reserved.
+* 
+* THIS CODE AND INFORMATION IS PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, 
+* EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
+* WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+\***************************************************************************/
+
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+
+namespace CSOpenXmlExcelToXml
+{
+    public class ConvertExcelToXml
+    {
+        /// &lt;summary&gt;
+        ///  Read Data from selected excel file into DataTable
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;filename&quot;&gt;Excel File Path&lt;/param&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        private DataTable ReadExcelFile(string filename)
+        {
+            // Initialize an instance of DataTable
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Use SpreadSheetDocument class of Open XML SDK to open excel file
+                using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, false))
+                {
+                    // Get Workbook Part of Spread Sheet Document
+                    WorkbookPart workbookPart = spreadsheetDocument.WorkbookPart;
+
+                    // Get all sheets in spread sheet document 
+                    IEnumerable&lt;Sheet&gt; sheetcollection = spreadsheetDocument.WorkbookPart.Workbook.GetFirstChild&lt;Sheets&gt;().Elements&lt;Sheet&gt;();
+
+                    // Get relationship Id
+                    string relationshipId = sheetcollection.First().Id.Value;
+
+                    // Get sheet1 Part of Spread Sheet Document
+                    WorksheetPart worksheetPart = (WorksheetPart)spreadsheetDocument.WorkbookPart.GetPartById(relationshipId);
+
+                    // Get Data in Excel file
+                    SheetData sheetData = worksheetPart.Worksheet.Elements&lt;SheetData&gt;().First();
+                    IEnumerable&lt;Row&gt; rowcollection = sheetData.Descendants&lt;Row&gt;();
+
+                    if (rowcollection.Count() == 0)
+                    {
+                        return dt;
+                    }
+
+                    // Add columns
+                    foreach (Cell cell in rowcollection.ElementAt(0))
+                    {
+                        dt.Columns.Add(GetValueOfCell(spreadsheetDocument, cell));
+                    }
+
+                    // Add rows into DataTable
+                    foreach (Row row in rowcollection)
+                    {
+                        DataRow temprow = dt.NewRow();
+                        int columnIndex = 0;
+                        foreach (Cell cell in row.Descendants&lt;Cell&gt;())
+                        {
+                            // Get Cell Column Index
+                            int cellColumnIndex = GetColumnIndex(GetColumnName(cell.CellReference));
+
+                            if (columnIndex &lt; cellColumnIndex)
+                            {
+                                do
+                                {
+                                    temprow[columnIndex] = string.Empty;
+                                    columnIndex++;
+                                }
+
+                                while (columnIndex &lt; cellColumnIndex);
+                            }
+
+                            temprow[columnIndex] = GetValueOfCell(spreadsheetDocument, cell);
+                            columnIndex++;
+                        }
+
+                        // Add the row to DataTable
+                        // the rows include header row
+                        dt.Rows.Add(temprow);
+                    }
+                }
+
+                // Here remove header row
+                dt.Rows.RemoveAt(0);
+                return dt;
+            }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message);
+            }
+        }
+
+        /// &lt;summary&gt;
+        ///  Get Value of Cell 
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;spreadsheetdocument&quot;&gt;SpreadSheet Document Object&lt;/param&gt;
+        /// &lt;param name=&quot;cell&quot;&gt;Cell Object&lt;/param&gt;
+        /// &lt;returns&gt;The Value in Cell&lt;/returns&gt;
+        private static string GetValueOfCell(SpreadsheetDocument spreadsheetdocument, Cell cell)
+        {
+            // Get value in Cell
+            SharedStringTablePart sharedString = spreadsheetdocument.WorkbookPart.SharedStringTablePart;
+            if (cell.CellValue == null)
+            {
+                return string.Empty;
+            }
+
+            string cellValue = cell.CellValue.InnerText;
+            
+            // The condition that the Cell DataType is SharedString
+            if (cell.DataType != null &amp;&amp; cell.DataType.Value == CellValues.SharedString)
+            {
+                return sharedString.SharedStringTable.ChildElements[int.Parse(cellValue)].InnerText;
+            }
+            else
+            {
+                return cellValue;
+            }
+        }
+
+        /// &lt;summary&gt;
+        /// Get Column Name From given cell name
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;cellReference&quot;&gt;Cell Name(For example,A1)&lt;/param&gt;
+        /// &lt;returns&gt;Column Name(For example, A)&lt;/returns&gt;
+        private string GetColumnName(string cellReference)
+        {
+            // Create a regular expression to match the column name of cell
+            Regex regex = new Regex(&quot;[A-Za-z]+&quot;);
+            Match match = regex.Match(cellReference);
+            return match.Value;
+        }
+
+        /// &lt;summary&gt;
+        /// Get Index of Column from given column name
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;columnName&quot;&gt;Column Name(For Example,A or AA)&lt;/param&gt;
+        /// &lt;returns&gt;Column Index&lt;/returns&gt;
+        private int GetColumnIndex(string columnName)
+        {
+            int columnIndex = 0;
+            int factor = 1;
+
+            // From right to left
+            for (int position = columnName.Length - 1; position &gt;= 0; position--)   
+            {
+                // For letters
+                if (Char.IsLetter(columnName[position]))
+                {
+                    columnIndex += factor * ((columnName[position] - &#39;A&#39;) + 1) - 1;
+                    factor *= 26;
+                }
+            }
+
+            return columnIndex;
+        }
+
+        /// &lt;summary&gt;
+        /// Convert DataTable to Xml format
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;filename&quot;&gt;Excel File Path&lt;/param&gt;
+        /// &lt;returns&gt;Xml format string&lt;/returns&gt;
+        public string GetXML(string filename)
+        {
+            using (DataSet ds = new DataSet())
+            {
+                ds.Tables.Add(this.ReadExcelFile(filename));
+                return ds.GetXml();
+            }
+        }
+    }
+}
+</pre>
+     
+</div>
+
+</div>
+
+            </div>
+    
+
+
+        </div>
+    </div>
+</div>    
+    </div>
+    <script language="javascript" type="text/javascript">
+
+        $(document).ready(function() {
+	    if (StreamEvents) {
+                window.gTracker = StreamEvents.tracker.create(null, {
+                    beaconUrl: 'setrack.gif',
+                    pageEventType: 'GalleriesPage',
+                    pageActionEventType: 'GalleriesPageAction',
+                    pageEventArg: {
+                        Brand: 'Office',
+                        Page: 'ProjectDetails',
+                        Section: null,
+                        PageContent: 'How-to-convert-excel-file-7a9bb404',
+                        PageContentType: 'Project'
+                    }
+                });
+             }
+
+
+             registerPageView();
+            
+             Galleries.project.getAuthorProjects();
+            
+             loadTabData('SourceCode');
+
+             var reportAbuseFormUrl = '\x2foffice\x2fHow-to-convert-excel-file-7a9bb404\x2freportabuse';
+             $("#reportAbuse a[href='']").click(function() {
+                    $('#projectContent').load(reportAbuseFormUrl);
+                    return false;
+                });
+            
+             
+        });
+        
+         function loadTabData(tabId) {
+                if ((tabId == 'SourceCode')) {
+                    $('div.collapsableSidebar').addClass('hiddenSidebar');
+                    $('#projectBody .tabContents').addClass('fullProjectBody');
+                    Galleries.utility.waitFor(
+                        function(){ return $("#userCard .profile-statline").length > 0;},
+                        function(){$("#userCard .profile-biography, #userCard .profile-statline, #userCard .profile-footer, #userCard .profile-inline-secondary").addClass('hiddenSidebar'); });
+                    
+                }
+                else {
+                    $('div.collapsableSidebar, #userCard .profile-biography, #userCard .profile-statline, #userCard .profile-footer, #userCard .profile-inline-secondary').removeClass('hiddenSidebar');
+                    $('#projectBody .tabContents').removeClass('fullProjectBody');
+                }
+
+                Galleries.project.resizeDesc();
+        }
+
+        function registerPageView() {
+            $.post('\x2foffice\x2fHow-to-convert-excel-file-7a9bb404\x2fstats\x2fRegisterPageView');
+        }
+    </script>
+
+
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="advertisment">
+        
+    </div>
+
+                                    <div class="Clear"></div>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="Clearbottom"></div>          
+                    <div class="bottomleftcorner"></div>            
+                    <div class="bottomrightcorner"></div> 
+                    
+                     
+                    
+
+                           
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+<div data-chameleon-template="epxfooter" ></div>
+<div data-chameleon-template="footer" >
+
+
+    <div id="ux-footer" class="ltr" xmlns="http://www.w3.org/1999/xhtml">
+        
+        <div id="footerContainer">
+            <div id="fourColumnFooter">
+                <div data-fragmentName="Column1" id="Fragment_Column1" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="ListOfLinkLists">
+    <div class="listItems">
+      
+      <div class="linkList" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="linkListTitle">Community Resources</div>
+        <ul class="links">
+          <li>
+            <a href="http://www.yammer.com/itpronetwork" title="O365 Technical Network" id="Column1_41253_6" xmlns="http://www.w3.org/1999/xhtml">O365 Technical Network</a>
+          </li>
+          <li>
+            <a href="http://social.msdn.microsoft.com/forums/office/en-us/home?category=apps,officedev,sharepoint,exchangeserver,lync,msproject" title="Office developer forums" id="Column1_41253_8" xmlns="http://www.w3.org/1999/xhtml">MSDN Forums</a>
+          </li>
+          <li>
+            <a href="http://officespdev.uservoice.com/" title="Customer feedback for the Office developer platform" id="Column1_41253_9" xmlns="http://www.w3.org/1999/xhtml">UserVoice</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/questions/tagged/ms-office" title="Stack Overflow" id="Column1_41253_10" xmlns="http://www.w3.org/1999/xhtml">Stack Overflow</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+                <div data-fragmentName="Column2" id="Fragment_Column2" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="ListOfLinkLists">
+    <div class="listItems">
+      
+      <div class="linkList" xmlns="http://www.w3.org/1999/xhtml">
+        <div class="linkListTitle">Follow Us</div>
+        <ul class="links">
+          <li>
+            <a href="https://twitter.com/OfficeDev" title="Twitter" id="Column2_41253_12" xmlns="http://www.w3.org/1999/xhtml">Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/OfficeDev" title="Facebook" id="Column2_41253_14" xmlns="http://www.w3.org/1999/xhtml">Facebook</a>
+          </li>
+          <li>
+            <a href="http://blogs.office.com/dev" title="Office Dev Blog" id="Column2_41253_13" xmlns="http://www.w3.org/1999/xhtml">Office Dev Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+
+            <span class="microsoftLogo" title="Microsoft"></span>
+            <div id="baseFooter">
+                <div id="FooterCopyright">© 2017 Microsoft</div>
+                
+    <form class="selectLocale" id="selectLocaleForm" action="https://msdn.microsoft.com/en-US/office/SelectLocale">
+        <input type="hidden" name="fromPage" value="https%3a%2f%2fcode.msdn.microsoft.com%2foffice%2fHow-to-convert-excel-file-7a9bb404%2fsourcecode%3ffileId%3d84394%26pathId%3d1762312282" />
+        <a href="#" onclick="$('#selectLocaleForm').submit();return false;" title="Change your language">United States - English</a>
+    </form>
+
+
+                <div data-fragmentName="BaseFooterLinks" id="Fragment_BaseFooterLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="https://msdn.microsoft.com/en-us/cc300389" id="BaseFooterLinks_41253_29" xmlns="http://www.w3.org/1999/xhtml">Terms of Use</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx" id="BaseFooterLinks_41253_30" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/info/privacy.mspx" id="BaseFooterLinks_41253_31" xmlns="http://www.w3.org/1999/xhtml">Privacy Statement</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" xmlns="http://www.w3.org/1999/xhtml">
+/*<![CDATA[*/
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "https://i-msdn.sec.s-msft.com", 
+	"js": "https://i2-msdn.sec.s-msft.com", 
+	"css": "https://i-msdn.sec.s-msft.com", 
+	"ttf": "https://i-msdn.sec.s-msft.com"
+});
+/**/
+/*]]>*/
+</script></div>  
+    <div data-chameleon-template="megablade" ></div>
+    
+
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function i(config) {
+                t[config] = function () {
+                    var i = arguments;
+                    t.queue.push(function () { t[config].apply(t, i) })
+                }
+            }
+            var t = { config: config }, u = document, e = window, o = "script", s = "AuthenticatedUserContext", h = "start", c = "stop", l = "Track", a = l + "Event", v = l + "Page", y = u.createElement(o), r, f;
+            y.src = config.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js";
+            u.getElementsByTagName(o)[0].parentNode.appendChild(y);
+            try {
+                t.cookie = u.cookie
+            } catch (p) {
+            }
+            for (t.queue = [], t.version = "1.0", r = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; r.length;) i("track" + r.pop());
+            return i("set" + s), i("clear" + s), i(h + a), i(c + a), i(h + v), i(c + v), i("flush"), config.disableExceptionTracking || (r = "onerror", i("_" + r), f = e[r], e[r] = function (config, i, u, e, o) {
+                var s = f && f(config, i, u, e, o);
+                return s !== !0 && t["_" + r](config, i, u, e, o), s
+            }), t
+        }({
+            instrumentationKey: "4782e831-4a9d-41f6-9c37-245029ab8905"
+        });
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+
+    <script type="text/javascript">
+        Galleries.utility.loadJavaScript("https://widgets.membership.s-msft.com/v1/loader.js?brand=Msdn&lang=en-US", true);
+        Galleries.utility.loadJavaScript('https://www.microsoft.com/library/svy/sto/broker.js', true);
+    </script>
+
+    
+    <script src="https://i1.code.msdn.s-msft.com/RequestReduceContent/d36a20f4cb4d677b2288670fd10a461e-c769c4ecaf33d04f3dea6af4337b9847-RequestReducedScript.js" type="text/javascript" ></script>        
+    <script type="text/javascript">
+        jQuery(window).load(
+            function () {
+                document.getElementsByTagName('body')[0].appendChild(addAsyncScript("https://i1.code.msdn.s-msft.com/office/GlobalResources/scripts/omni_rsid_social.js?cver=0001"));
+                document.getElementsByTagName('body')[0].appendChild(addAsyncScript("https://i1.code.msdn.s-msft.com/office/GlobalResources/scripts/WEDCS.js?cver=0001"));
+            });
+        </script>
+        <noscript><a href="https://www.omniture.com" title="Web Analytics">
+        <img src="https://msstonojssocial.112.2O7.net/b/ss/msstonojssocial/1/H.20.2--NS/0" height="1" width="1" alt="" />
+        </a></noscript>
+    
+</body>
+</html>
