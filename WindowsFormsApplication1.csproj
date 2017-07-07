@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis.cs" />
     <Compile Include="ConvertExcelToXml.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

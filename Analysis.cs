@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Xml;
@@ -16,11 +17,44 @@ namespace XMLAnalysis
         /// the only data inputted is '1'.
         /// </summary>
         /// <param name="table"></param>
-        /// The data in an xml file as a string
+        /// The data in an xml document
         /// <returns></returns>
-        public string validateTable(XmlDocument data)
+        public List<int> validateTable(XmlDocument data)
         {
+            XmlNodeList tableNodes = data.SelectNodes("//NewDataSet/Table1");
+            int count = 0;
+            List<int> invalidNodes = new List<int>();
+            foreach (XmlNode itemNode in tableNodes)
+            {
+                count++;
+                Boolean conc1 = checkNode(itemNode.SelectSingleNode("Conc1Default"));
+                Boolean conc2 = checkNode(itemNode.SelectSingleNode("Conc2Default"));
+                Boolean conc3 = checkNode(itemNode.SelectSingleNode("Conc3Default"));
+                int testInt = boolToInt(conc1) + boolToInt(conc2) + boolToInt(conc3);
+                if (testInt != 1)
+                {
+                    invalidNodes.Add(count);
+                }
+            }
+            return invalidNodes;
+        }
+        private Boolean checkNode(XmlNode itemNode)
+        {
+            String data = itemNode.SelectSingleNode("/text()").Value;
+            int dataTest;
+            if(Int32.TryParse(data, out dataTest))
+            {
+                if (dataTest == 1)
+                    return true;
+            }
+            return false;
+        }
 
+        private int boolToInt(Boolean t)
+        {
+            int i = t ? 1 : 0;
+            return i;
         }
     }
+
 }
